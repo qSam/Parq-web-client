@@ -1,8 +1,4 @@
-# ReactStarterPack
-Starter Pack for building React Applications  
-Configured with Babel and Webpack  
+# Parq-Web-Client
 
-To use the Starter Pack:  
-
-1) npm install  
-2) npm run dev
+Web Client for Parq  
+App built with React

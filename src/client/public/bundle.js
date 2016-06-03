@@ -80,7 +80,7 @@
 	      return _react2.default.createElement(
 	        'p',
 	        null,
-	        ' Hello React Starter!'
+	        'Let\'s build the Parq Web Client'
 	      );
 	    }
 	  }]);

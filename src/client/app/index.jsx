@@ -3,7 +3,9 @@ import {render} from 'react-dom';
 
 class App extends React.Component {
   render () {
-    return <p> Hello React Starter!</p>;
+    return (
+    <p>Let's build the Parq Web Client</p>
+    );
   }
 }
 

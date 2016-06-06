@@ -5,7 +5,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-         Hey There !
+         Lets do this right now
       </div>
     );
   }

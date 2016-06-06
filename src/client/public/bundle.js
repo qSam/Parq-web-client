@@ -28114,7 +28114,7 @@
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    "div",
-	    { "class": "panel panel-primary" },
+	    { className: "well" },
 	    " Welcome to Parq Beta"
 	  );
 	};

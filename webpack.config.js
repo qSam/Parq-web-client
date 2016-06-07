@@ -18,6 +18,9 @@ var config = {
        loader : 'babel'
      }
    ]
+ },
+ devServer: {
+    historyApiFallback: true
  }
 };
 

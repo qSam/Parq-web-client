@@ -77,6 +77,10 @@
 	
 	var _signin2 = _interopRequireDefault(_signin);
 	
+	var _homefeature = __webpack_require__(/*! ./components/homefeature */ 299);
+	
+	var _homefeature2 = _interopRequireDefault(_homefeature);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var createStoreWithMiddleware = (0, _redux.applyMiddleware)()(_redux.createStore);
@@ -92,7 +96,8 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _app2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _welcome2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _homefeature2.default })
 	    )
 	  )
 	), document.getElementById('app'));
@@ -31517,6 +31522,73 @@
 /***/ function(module, exports) {
 
 	"use strict";
+
+/***/ },
+/* 299 */
+/*!**************************************************!*\
+  !*** ./src/client/app/components/homefeature.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var HomeFeature = function (_Component) {
+	  _inherits(HomeFeature, _Component);
+	
+	  function HomeFeature() {
+	    _classCallCheck(this, HomeFeature);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(HomeFeature).apply(this, arguments));
+	  }
+	
+	  _createClass(HomeFeature, [{
+	    key: 'renderPosts',
+	    value: function renderPosts() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Show All the posts'
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'list-group' },
+	          this.renderPosts()
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return HomeFeature;
+	}(_react.Component);
+	
+	exports.default = (0, _reactRedux.connect)()(HomeFeature);
 
 /***/ }
 /******/ ]);

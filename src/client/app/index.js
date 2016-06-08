@@ -8,6 +8,7 @@ import App from './components/app';
 import reducers from './reducers';
 import Welcome from './components/welcome';
 import Signin from './components/auth/signin';
+import HomeFeature from './components/homefeature';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -17,6 +18,7 @@ render(<Provider store={store}>
         <Route path="/" component={App}>
           <IndexRoute component={Welcome} />
           <Route path="signin" component={Signin} />
+          <Route path="home" component={HomeFeature} />
         </Route>
        </Router>
        </Provider>, document.getElementById('app'));

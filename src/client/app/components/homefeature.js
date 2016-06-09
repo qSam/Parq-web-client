@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {fetchPosts} from '../actions/index';
 
 
 class HomeFeature extends Component {
 
+  //First time render
+  componentWillMount() {
+    //Get All posts for user
+    this.props.fetchPosts();
+  }
 
   renderPosts(){
     return (
@@ -23,4 +29,8 @@ class HomeFeature extends Component {
 
 }
 
-export default connect()(HomeFeature);
+function mapStateToProps(state) {
+  return { posts: state.posts.all };
+}
+
+export default connect(mapStateToProps,{fetchPosts})(HomeFeature);

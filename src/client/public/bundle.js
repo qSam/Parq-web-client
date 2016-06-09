@@ -31440,10 +31440,10 @@
 	
 	var FETCH_POSTS = exports.FETCH_POSTS = 'FETCH_POSTS';
 	
-	var ROOT_URL = '';
+	var ROOT_URL = 'localhost:3090';
 	
 	function fetchPosts() {
-	  var request = _axios2.default.get('' + ROOT_URK);
+	  var request = _axios2.default.get(ROOT_URL + '/getAllUsers');
 	
 	  return {
 	    type: FETCH_POSTS,

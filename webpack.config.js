@@ -19,8 +19,12 @@ var config = {
      }
    ]
  },
+ resolve: {
+   extensions: ['','.js','.jsx']
+ },
  devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    contentBAse: './'
  }
 };
 

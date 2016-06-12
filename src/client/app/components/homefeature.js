@@ -12,9 +12,13 @@ class HomeFeature extends Component {
   }
 
   renderPosts(){
-    return (
-      <div>Show All the posts</div>
-    );
+    return this.props.posts.map( (post)=> {
+      return (
+          <li className="list-group-item">
+            Me here
+          </li>
+      )
+    });
   }
 
   render() {

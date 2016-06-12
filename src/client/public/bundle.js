@@ -31440,7 +31440,7 @@
 	
 	var FETCH_POSTS = exports.FETCH_POSTS = 'FETCH_POSTS';
 	
-	var ROOT_URL = 'localhost:3090';
+	var ROOT_URL = 'http://localhost:3090';
 	
 	function fetchPosts() {
 	  var request = _axios2.default.get(ROOT_URL + '/getAllUsers');
@@ -32907,11 +32907,13 @@
 	  }, {
 	    key: 'renderPosts',
 	    value: function renderPosts() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Show All the posts'
-	      );
+	      return this.props.posts.map(function (post) {
+	        return _react2.default.createElement(
+	          'li',
+	          { className: 'list-group-item' },
+	          'Me here'
+	        );
+	      });
 	    }
 	  }, {
 	    key: 'render',

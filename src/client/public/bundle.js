@@ -28137,11 +28137,20 @@
 	var ROOT_URL = 'http://localhost:3090';
 	
 	function fetchPosts() {
-	  var request = _axios2.default.get(ROOT_URL + '/getAllUsers');
 	
-	  return {
-	    type: FETCH_POSTS,
-	    payload: request
+	  var token = localStorage.getItem('token');
+	
+	  return function (dispatch) {
+	    _axios2.default.get(ROOT_URL + '/getAllUsers', {
+	      headers: {
+	        'authorization': token
+	      } }).then(function (response) {
+	
+	      dispatch({
+	        type: FETCH_POSTS,
+	        payload: response.data
+	      });
+	    });
 	  };
 	}
 	
@@ -32781,7 +32790,8 @@
 	
 	  switch (action.type) {
 	    case _index.FETCH_POSTS:
-	      return _extends({}, state, { all: action.payload.data });
+	      console.log(action.payload);
+	      return _extends({}, state, { all: action.payload });
 	    default:
 	      return state;
 	  }
@@ -33012,8 +33022,8 @@
 	      return this.props.posts.map(function (post) {
 	        return _react2.default.createElement(
 	          'li',
-	          { className: 'list-group-item' },
-	          'Me here'
+	          { className: 'list-group-item', key: post.email },
+	          post.email
 	        );
 	      });
 	    }

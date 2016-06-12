@@ -7,12 +7,23 @@ export const AUTH_USER = 'AUTH_USER';
 const ROOT_URL  = 'http://localhost:3090';
 
 export function fetchPosts() {
-  const request = axios.get(`${ROOT_URL}/getAllUsers`);
 
-  return {
-    type: FETCH_POSTS,
-    payload: request
-  };
+  const token = localStorage.getItem('token');
+
+  return function (dispatch) {
+    axios.get(`${ROOT_URL}/getAllUsers`,{
+      headers: {
+        'authorization': token
+      }})
+      .then (response => {
+      
+        dispatch({
+          type:FETCH_POSTS,
+          payload: response.data
+        });
+      });
+  }
+
 }
 
 export function signinUser({email,password}) {

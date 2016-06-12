@@ -28141,7 +28141,10 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.get(ROOT_URL + '/getAllUsers', {
+	    _axios2.default.get(ROOT_URL + '/getAllUserPosts', {
+	      params: {
+	        id: 'parq-user2@gmail.com'
+	      },
 	      headers: {
 	        'authorization': token
 	      } }).then(function (response) {
@@ -33022,8 +33025,8 @@
 	      return this.props.posts.map(function (post) {
 	        return _react2.default.createElement(
 	          'li',
-	          { className: 'list-group-item', key: post.email },
-	          post.email
+	          { className: 'list-group-item' },
+	          post.post
 	        );
 	      });
 	    }

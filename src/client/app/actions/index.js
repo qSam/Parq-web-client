@@ -11,12 +11,15 @@ export function fetchPosts() {
   const token = localStorage.getItem('token');
 
   return function (dispatch) {
-    axios.get(`${ROOT_URL}/getAllUsers`,{
+    axios.get(`${ROOT_URL}/getAllUserPosts`,{
+      params:{
+        id: 'parq-user2@gmail.com'
+      },
       headers: {
         'authorization': token
       }})
       .then (response => {
-      
+
         dispatch({
           type:FETCH_POSTS,
           payload: response.data

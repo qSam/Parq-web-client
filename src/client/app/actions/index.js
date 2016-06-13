@@ -11,10 +11,7 @@ export function fetchPosts() {
   const token = localStorage.getItem('token');
 
   return function (dispatch) {
-    axios.get(`${ROOT_URL}/getAllUserPosts`,{
-      params:{
-        id: 'parq-user2@gmail.com'
-      },
+    axios.get(`${ROOT_URL}/getAllUserPosts/parq-user3@gmail.com`,{
       headers: {
         'authorization': token
       }})

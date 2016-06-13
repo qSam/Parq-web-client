@@ -28141,10 +28141,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.get(ROOT_URL + '/getAllUserPosts', {
-	      params: {
-	        id: 'parq-user2@gmail.com'
-	      },
+	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user3@gmail.com', {
 	      headers: {
 	        'authorization': token
 	      } }).then(function (response) {

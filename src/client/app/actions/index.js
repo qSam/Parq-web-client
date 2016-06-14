@@ -1,8 +1,10 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 
-export const FETCH_POSTS = 'FETCH_POSTS';
-export const AUTH_USER = 'AUTH_USER';
+export const FETCH_POSTS = 'fetch_posts';
+export const AUTH_USER = 'auth_user';
+export const UNAUTH_USER = 'unauth_user';
+export const AUTH_ERROR = 'auth_error';
 
 const ROOT_URL  = 'http://localhost:3090';
 
@@ -22,6 +24,11 @@ export function fetchPosts() {
           type:FETCH_POSTS,
           payload: response.data
         });
+      })
+      .catch( () => {
+        //Show error
+        console.log('I am here');
+        dispatch(authError('Bad Login Info'))
       });
   }
 
@@ -43,5 +50,9 @@ export function signinUser({email,password}) {
       });
 
   }
+}
 
+export function signoutUser() {
+  localStorage.removeItem('token');
+  return { type: UNAUTH_USER };
 }

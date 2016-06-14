@@ -83,7 +83,11 @@
 	
 	var _signin2 = _interopRequireDefault(_signin);
 	
-	var _homefeature = __webpack_require__(/*! ./components/homefeature */ 321);
+	var _signout = __webpack_require__(/*! ./components/auth/signout */ 321);
+	
+	var _signout2 = _interopRequireDefault(_signout);
+	
+	var _homefeature = __webpack_require__(/*! ./components/homefeature */ 322);
 	
 	var _homefeature2 = _interopRequireDefault(_homefeature);
 	
@@ -110,6 +114,7 @@
 	      { path: '/', component: _app2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _welcome2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'signout', component: _signout2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _homefeature2.default })
 	    )
 	  )
@@ -28119,9 +28124,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.AUTH_USER = exports.FETCH_POSTS = undefined;
+	exports.AUTH_ERROR = exports.UNAUTH_USER = exports.AUTH_USER = exports.FETCH_POSTS = undefined;
 	exports.fetchPosts = fetchPosts;
 	exports.signinUser = signinUser;
+	exports.signoutUser = signoutUser;
 	
 	var _axios = __webpack_require__(/*! axios */ 251);
 	
@@ -28131,8 +28137,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var FETCH_POSTS = exports.FETCH_POSTS = 'FETCH_POSTS';
-	var AUTH_USER = exports.AUTH_USER = 'AUTH_USER';
+	var FETCH_POSTS = exports.FETCH_POSTS = 'fetch_posts';
+	var AUTH_USER = exports.AUTH_USER = 'auth_user';
+	var UNAUTH_USER = exports.UNAUTH_USER = 'unauth_user';
+	var AUTH_ERROR = exports.AUTH_ERROR = 'auth_error';
 	
 	var ROOT_URL = 'http://localhost:3090';
 	
@@ -28144,12 +28152,17 @@
 	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user3@gmail.com', {
 	      headers: {
 	        'authorization': token
-	      } }).then(function (response) {
+	      }
+	    }).then(function (response) {
 	
 	      dispatch({
 	        type: FETCH_POSTS,
 	        payload: response.data
 	      });
+	    }).catch(function () {
+	      //Show error
+	      console.log('I am here');
+	      dispatch(authError('Bad Login Info'));
 	    });
 	  };
 	}
@@ -28170,6 +28183,11 @@
 	      _reactRouter.browserHistory.push('/home');
 	    });
 	  };
+	}
+	
+	function signoutUser() {
+	  localStorage.removeItem('token');
+	  return { type: UNAUTH_USER };
 	}
 
 /***/ },
@@ -29542,15 +29560,28 @@
 	    key: 'renderLinks',
 	    value: function renderLinks() {
 	
-	      return [_react2.default.createElement(
-	        'li',
-	        { className: 'nav-item', key: 1 },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'nav-link', to: '/signin' },
-	          'Sign In'
-	        )
-	      )];
+	      if (this.props.authenticated) {
+	        //Show a link to sign to sign out
+	        return _react2.default.createElement(
+	          'li',
+	          { className: 'nav-item', key: 2 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'nav-link', to: '/signout' },
+	            'Sign Out'
+	          )
+	        );
+	      } else {
+	        return [_react2.default.createElement(
+	          'li',
+	          { className: 'nav-item', key: 1 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'nav-link', to: '/signin' },
+	            'Sign In'
+	          )
+	        )];
+	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -29570,7 +29601,13 @@
 	  return Header;
 	}(_react.Component);
 	
-	exports.default = (0, _reactRedux.connect)()(Header);
+	function mapStateToProps(state) {
+	  return {
+	    authenticated: state.auth.authenticated
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Header);
 
 /***/ },
 /* 272 */
@@ -32823,6 +32860,10 @@
 	  switch (action.type) {
 	    case _index.AUTH_USER:
 	      return _extends({}, state, { authenticated: true });
+	    case _index.UNAUTH_USER:
+	      return _extends({}, state, { authenticated: false });
+	    case _index.AUTH_ERROR:
+	      return _extends({}, state, { error: action.payload });
 	  }
 	
 	  return state;
@@ -32914,6 +32955,22 @@
 	      this.props.signinUser({ email: email, password: password });
 	    }
 	  }, {
+	    key: 'renderAlert',
+	    value: function renderAlert() {
+	      if (this.props.errorMessage) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'alert alert-danger' },
+	          _react2.default.createElement(
+	            'strong',
+	            null,
+	            'Oops!'
+	          ),
+	          this.props.errorMessage
+	        );
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
@@ -32946,6 +33003,7 @@
 	          ),
 	          _react2.default.createElement('input', _extends({}, password, { className: 'form-control' }))
 	        ),
+	        this.renderAlert(),
 	        _react2.default.createElement(
 	          'button',
 	          { action: 'submit', className: 'btn btn-primary' },
@@ -32959,7 +33017,7 @@
 	}(_react.Component);
 	
 	function mapStateToProps(state) {
-	  return {};
+	  return { errorMessage: state.auth.error };
 	}
 	
 	exports.default = (0, _reduxForm.reduxForm)({
@@ -32969,6 +33027,71 @@
 
 /***/ },
 /* 321 */
+/*!***************************************************!*\
+  !*** ./src/client/app/components/auth/signout.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
+	
+	var _actions = __webpack_require__(/*! ../../actions */ 250);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Signout = function (_Component) {
+	  _inherits(Signout, _Component);
+	
+	  function Signout() {
+	    _classCallCheck(this, Signout);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Signout).apply(this, arguments));
+	  }
+	
+	  _createClass(Signout, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.signoutUser();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Good Bye'
+	      );
+	    }
+	  }]);
+	
+	  return Signout;
+	}(_react.Component);
+	
+	exports.default = (0, _reactRedux.connect)(null, actions)(Signout);
+
+/***/ },
+/* 322 */
 /*!**************************************************!*\
   !*** ./src/client/app/components/homefeature.js ***!
   \**************************************************/

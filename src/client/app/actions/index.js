@@ -14,7 +14,8 @@ export function fetchPosts() {
     axios.get(`${ROOT_URL}/getAllUserPosts/parq-user3@gmail.com`,{
       headers: {
         'authorization': token
-      }})
+      }
+    })
       .then (response => {
 
         dispatch({

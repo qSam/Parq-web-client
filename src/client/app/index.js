@@ -11,6 +11,7 @@ import App from './components/app';
 import reducers from './reducers';
 import Welcome from './components/welcome';
 import Signin from './components/auth/signin';
+import Signout from './components/auth/signout';
 import HomeFeature from './components/homefeature';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -28,6 +29,7 @@ render(<Provider store={store}>
         <Route path="/" component={App}>
           <IndexRoute component={Welcome} />
           <Route path="signin" component={Signin} />
+          <Route path="signout" component={Signout} />
           <Route path="home" component={HomeFeature} />
         </Route>
        </Router>

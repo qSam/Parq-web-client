@@ -56,3 +56,14 @@ export function signoutUser() {
   localStorage.removeItem('token');
   return { type: UNAUTH_USER };
 }
+
+export function signupUser({email,password}){
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`,{email,password})
+      .then( response => {
+
+      })
+      .catch( response => dispatch() )
+
+  };
+}

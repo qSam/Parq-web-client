@@ -28203,9 +28203,11 @@
 	  return function (dispatch) {
 	    _axios2.default.post(ROOT_URL + '/signup', { email: email, password: password }).then(function (response) {
 	      //Dispatch Auth action to reducer
+	      console.log('I am here');
 	      dispatch({ type: AUTH_USER });
+	      console.log('Here now');
 	      //Save JWT Token
-	      localStorage.setIem('token', response.data.token);
+	      localStorage.setItem('token', response.data.token);
 	      //Redirect to home
 	      _reactRouter.browserHistory.push('/home');
 	    }).catch(function (response) {
@@ -33172,6 +33174,7 @@
 	    key: 'handleFormSubmit',
 	    value: function handleFormSubmit(formProps) {
 	      //Call Signup Action Creator
+	      console.log('Here');
 	      this.props.signupUser(formProps);
 	    }
 	  }, {

@@ -61,6 +61,12 @@ export function signupUser({email,password}){
   return function(dispatch) {
     axios.post(`${ROOT_URL}/signup`,{email,password})
       .then( response => {
+        //Dispatch Auth action to reducer
+        dispatch({type: AUTH_USER});
+        //Save JWT Token
+        localStorage.setIem('token', response.data.token);
+        //Redirect to home
+        browserHistory.push('/home');
 
       })
       .catch( response => dispatch() )

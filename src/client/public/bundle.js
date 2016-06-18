@@ -28133,6 +28133,7 @@
 	exports.fetchPosts = fetchPosts;
 	exports.signinUser = signinUser;
 	exports.signoutUser = signoutUser;
+	exports.signupUser = signupUser;
 	
 	var _axios = __webpack_require__(/*! axios */ 251);
 	
@@ -28193,6 +28194,24 @@
 	function signoutUser() {
 	  localStorage.removeItem('token');
 	  return { type: UNAUTH_USER };
+	}
+	
+	function signupUser(_ref2) {
+	  var email = _ref2.email;
+	  var password = _ref2.password;
+	
+	  return function (dispatch) {
+	    _axios2.default.post(ROOT_URL + '/signup', { email: email, password: password }).then(function (response) {
+	      //Dispatch Auth action to reducer
+	      dispatch({ type: AUTH_USER });
+	      //Save JWT Token
+	      localStorage.setIem('token', response.data.token);
+	      //Redirect to home
+	      _reactRouter.browserHistory.push('/home');
+	    }).catch(function (response) {
+	      return dispatch();
+	    });
+	  };
 	}
 
 /***/ },
@@ -33152,7 +33171,8 @@
 	  _createClass(Signup, [{
 	    key: 'handleFormSubmit',
 	    value: function handleFormSubmit(formProps) {
-	      //Do Something
+	      //Call Signup Action Creator
+	      this.props.signupUser(formProps);
 	    }
 	  }, {
 	    key: 'render',

@@ -5,6 +5,7 @@ export const FETCH_POSTS = 'fetch_posts';
 export const AUTH_USER = 'auth_user';
 export const UNAUTH_USER = 'unauth_user';
 export const AUTH_ERROR = 'auth_error';
+export const ADD_POST = 'add_post';
 
 const ROOT_URL  = 'http://localhost:3090';
 
@@ -74,4 +75,13 @@ export function signupUser({email,password}){
       .catch( response => dispatch() )
 
   };
+}
+
+export function addPost(){
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/addPost`);
+    //Dispatch action to reducer
+
+    //Do other things
+  }
 }

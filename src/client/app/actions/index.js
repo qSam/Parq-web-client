@@ -79,7 +79,7 @@ export function signupUser({email,password}){
 
 export function addPost(){
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/addPost`);
+    //axios.post(`${ROOT_URL}/addPost`);
     //Dispatch action to reducer
 
     //Do other things

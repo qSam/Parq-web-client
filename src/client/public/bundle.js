@@ -28225,7 +28225,7 @@
 	
 	function addPost() {
 	  return function (dispatch) {
-	    _axios2.default.post(ROOT_URL + '/addPost');
+	    //axios.post(`${ROOT_URL}/addPost`);
 	    //Dispatch action to reducer
 	
 	    //Do other things
@@ -33374,6 +33374,8 @@
 	
 	var _reduxForm = __webpack_require__(/*! redux-form */ 273);
 	
+	var _index = __webpack_require__(/*! ../actions/index */ 250);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33392,6 +33394,11 @@
 	  }
 	
 	  _createClass(NewPost, [{
+	    key: 'onSubmit',
+	    value: function onSubmit(props) {
+	      //Submit new post action
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
@@ -33431,10 +33438,10 @@
 	}
 	
 	exports.default = (0, _reduxForm.reduxForm)({
-	  post: 'PostsNewForm',
+	  form: 'NewPostForm',
 	  fields: ['post'],
 	  validate: validate
-	}, null, null)(PostNew);
+	}, null, { addPost: _index.addPost })(NewPost);
 
 /***/ }
 /******/ ]);

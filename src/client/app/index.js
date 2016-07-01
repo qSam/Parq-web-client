@@ -14,6 +14,7 @@ import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import HomeFeature from './components/homefeature';
+import NewPost from './components/newpost';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -33,6 +34,7 @@ render(<Provider store={store}>
           <Route path="signout" component={Signout} />
           <Route path="signup" component={Signup} />
           <Route path="home" component={HomeFeature} />
+          <Route path="new" component={NewPost} />
         </Route>
        </Router>
        </Provider>, document.getElementById('app'));

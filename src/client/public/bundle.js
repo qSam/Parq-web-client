@@ -95,6 +95,10 @@
 	
 	var _homefeature2 = _interopRequireDefault(_homefeature);
 	
+	var _newpost = __webpack_require__(/*! ./components/newpost */ 324);
+	
+	var _newpost2 = _interopRequireDefault(_newpost);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default)(_redux.createStore);
@@ -120,7 +124,8 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'signout', component: _signout2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signup2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _homefeature2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _homefeature2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _newpost2.default })
 	    )
 	  )
 	), document.getElementById('app'));
@@ -28129,11 +28134,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.AUTH_ERROR = exports.UNAUTH_USER = exports.AUTH_USER = exports.FETCH_POSTS = undefined;
+	exports.ADD_POST = exports.AUTH_ERROR = exports.UNAUTH_USER = exports.AUTH_USER = exports.FETCH_POSTS = undefined;
 	exports.fetchPosts = fetchPosts;
 	exports.signinUser = signinUser;
 	exports.signoutUser = signoutUser;
 	exports.signupUser = signupUser;
+	exports.addPost = addPost;
 	
 	var _axios = __webpack_require__(/*! axios */ 251);
 	
@@ -28147,6 +28153,7 @@
 	var AUTH_USER = exports.AUTH_USER = 'auth_user';
 	var UNAUTH_USER = exports.UNAUTH_USER = 'unauth_user';
 	var AUTH_ERROR = exports.AUTH_ERROR = 'auth_error';
+	var ADD_POST = exports.ADD_POST = 'add_post';
 	
 	var ROOT_URL = 'http://localhost:3090';
 	
@@ -28213,6 +28220,15 @@
 	    }).catch(function (response) {
 	      return dispatch();
 	    });
+	  };
+	}
+	
+	function addPost() {
+	  return function (dispatch) {
+	    _axios2.default.post(ROOT_URL + '/addPost');
+	    //Dispatch action to reducer
+	
+	    //Do other things
 	  };
 	}
 
@@ -33332,6 +33348,67 @@
 	}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPosts: _index.fetchPosts })(HomeFeature);
+
+/***/ },
+/* 324 */
+/*!**********************************************!*\
+  !*** ./src/client/app/components/newpost.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
+	
+	var _reduxForm = __webpack_require__(/*! redux-form */ 273);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewPost = function (_Component) {
+	  _inherits(NewPost, _Component);
+	
+	  function NewPost() {
+	    _classCallCheck(this, NewPost);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NewPost).apply(this, arguments));
+	  }
+	
+	  _createClass(NewPost, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var post = _props.fields.post;
+	      var handleSubmit = _props.handleSubmit;
+	
+	
+	      return _react2.default.createElement('form', { onSubmit: handleSubmit(this.onSubmit.bind(this)) });
+	    }
+	  }]);
+	
+	  return NewPost;
+	}(_react.Component);
+	
+	exports.default = (0, _reduxForm.reduxForm)({
+	  post: 'PostsNewForm',
+	  fields: ['post'],
+	  validate: validate
+	}, null, null)(PostNew);
 
 /***/ }
 /******/ ]);

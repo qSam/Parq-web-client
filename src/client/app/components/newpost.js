@@ -9,13 +9,26 @@ class NewPost extends Component {
 
     const {fields:{post}, handleSubmit} = this.props;
 
-
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
+
+        <div  className="form-group">
+          <label>Share your purchase: </label>
+          <input type="text" className="form-control" {...post} />
+        </div>
+
+        <button type="submit" className="btn btn-primary">
+        Submit</button>
 
       </form>
     );
   }
+}
+
+function validate(values) {
+  const errors = {}
+
+  return errors;
 }
 
 

@@ -33350,6 +33350,12 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
+	          'div',
+	          { className: 'rounded' },
+	          'Purchase Count: ',
+	          this.props.posts.length
+	        ),
+	        _react2.default.createElement(
 	          'ul',
 	          { className: 'list-group' },
 	          this.renderPosts()

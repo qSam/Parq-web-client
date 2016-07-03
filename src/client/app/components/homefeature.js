@@ -24,6 +24,9 @@ class HomeFeature extends Component {
   render() {
     return (
       <div>
+        <div className="rounded">
+          Purchase Count: {this.props.posts.length}
+        </div>
         <ul className="list-group">
           {this.renderPosts()}
         </ul>

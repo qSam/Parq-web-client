@@ -29614,7 +29614,15 @@
 	
 	      if (this.props.authenticated) {
 	        //Show a link to sign to sign out
-	        return _react2.default.createElement(
+	        return [_react2.default.createElement(
+	          'li',
+	          { className: 'nav-item', key: 1 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'nav-link', to: '/new' },
+	            'Add to Parq'
+	          )
+	        ), _react2.default.createElement(
 	          'li',
 	          { className: 'nav-item', key: 2 },
 	          _react2.default.createElement(
@@ -29622,11 +29630,11 @@
 	            { className: 'nav-link', to: '/signout' },
 	            'Sign Out'
 	          )
-	        );
+	        )];
 	      } else {
 	        return [_react2.default.createElement(
 	          'li',
-	          { className: 'nav-item', key: 1 },
+	          { className: 'nav-item', key: 3 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { className: 'nav-link', to: '/signin' },
@@ -29634,7 +29642,7 @@
 	          )
 	        ), _react2.default.createElement(
 	          'li',
-	          { className: 'nav-item', key: 3 },
+	          { className: 'nav-item', key: 4 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { className: 'nav-link', to: '/signup' },

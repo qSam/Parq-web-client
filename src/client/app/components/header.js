@@ -10,16 +10,21 @@ class Header extends Component {
 
     if (this.props.authenticated) {
       //Show a link to sign to sign out
-      return <li className="nav-item" key={2} >
+      return [
+        <li className="nav-item" key={1} >
+          <Link className="nav-link" to="/new">Add to Parq</Link>
+      </li>,
+        <li className="nav-item" key={2} >
           <Link className="nav-link" to="/signout">Sign Out</Link>
       </li>
+    ];
 
     } else {
     return [
-      <li className="nav-item" key={1}>
+      <li className="nav-item" key={3}>
         <Link className="nav-link" to="/signin">Sign In</Link>
       </li>,
-      <li className="nav-item" key={3}>
+      <li className="nav-item" key={4}>
         <Link className="nav-link" to="/signup">Sign Up</Link>
       </li>
     ];

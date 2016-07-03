@@ -5,7 +5,7 @@ export const FETCH_POSTS = 'fetch_posts';
 export const AUTH_USER = 'auth_user';
 export const UNAUTH_USER = 'unauth_user';
 export const AUTH_ERROR = 'auth_error';
-export const ADD_POST = 'add_post';
+export const NEW_POST = 'new_post';
 
 const ROOT_URL  = 'http://localhost:3090';
 
@@ -63,9 +63,7 @@ export function signupUser({email,password}){
     axios.post(`${ROOT_URL}/signup`,{email,password})
       .then( response => {
         //Dispatch Auth action to reducer
-        console.log('I am here')
         dispatch({type: AUTH_USER})
-        console.log('Here now');
         //Save JWT Token
         localStorage.setItem('token', response.data.token);
         //Redirect to home
@@ -77,11 +75,21 @@ export function signupUser({email,password}){
   };
 }
 
-export function addPost(){
-  return function(dispatch) {
-    //axios.post(`${ROOT_URL}/addPost`);
-    //Dispatch action to reducer
+export function newPost({post}){
 
-    //Do other things
-  }
+  const token = localStorage.getItem('token');
+
+  return function(dispatch) {
+     axios.put(`${ROOT_URL}/addNewUserPost/parq-user3@gmail.com`,{post},{
+       headers: {
+         'authorization': token
+       }
+     })
+     .then (response => {
+       //Dispatch response payload to reducer
+       console.log('Add Post successful', {post});
+       browserHistory.push('/home');
+     })
+     .catch (response => dispatch())
+  };
 }

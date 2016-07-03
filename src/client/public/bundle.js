@@ -28134,12 +28134,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ADD_POST = exports.AUTH_ERROR = exports.UNAUTH_USER = exports.AUTH_USER = exports.FETCH_POSTS = undefined;
+	exports.NEW_POST = exports.AUTH_ERROR = exports.UNAUTH_USER = exports.AUTH_USER = exports.FETCH_POSTS = undefined;
 	exports.fetchPosts = fetchPosts;
 	exports.signinUser = signinUser;
 	exports.signoutUser = signoutUser;
 	exports.signupUser = signupUser;
-	exports.addPost = addPost;
+	exports.newPost = newPost;
 	
 	var _axios = __webpack_require__(/*! axios */ 251);
 	
@@ -28153,7 +28153,7 @@
 	var AUTH_USER = exports.AUTH_USER = 'auth_user';
 	var UNAUTH_USER = exports.UNAUTH_USER = 'unauth_user';
 	var AUTH_ERROR = exports.AUTH_ERROR = 'auth_error';
-	var ADD_POST = exports.ADD_POST = 'add_post';
+	var NEW_POST = exports.NEW_POST = 'new_post';
 	
 	var ROOT_URL = 'http://localhost:3090';
 	
@@ -28210,9 +28210,7 @@
 	  return function (dispatch) {
 	    _axios2.default.post(ROOT_URL + '/signup', { email: email, password: password }).then(function (response) {
 	      //Dispatch Auth action to reducer
-	      console.log('I am here');
 	      dispatch({ type: AUTH_USER });
-	      console.log('Here now');
 	      //Save JWT Token
 	      localStorage.setItem('token', response.data.token);
 	      //Redirect to home
@@ -28223,12 +28221,24 @@
 	  };
 	}
 	
-	function addPost() {
-	  return function (dispatch) {
-	    //axios.post(`${ROOT_URL}/addPost`);
-	    //Dispatch action to reducer
+	function newPost(_ref3) {
+	  var post = _ref3.post;
 	
-	    //Do other things
+	
+	  var token = localStorage.getItem('token');
+	
+	  return function (dispatch) {
+	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user3@gmail.com', { post: post }, {
+	      headers: {
+	        'authorization': token
+	      }
+	    }).then(function (response) {
+	      //Dispatch response payload to reducer
+	      console.log('Add Post successful', { post: post });
+	      _reactRouter.browserHistory.push('/home');
+	    }).catch(function (response) {
+	      return dispatch();
+	    });
 	  };
 	}
 
@@ -33376,6 +33386,8 @@
 	
 	var _index = __webpack_require__(/*! ../actions/index */ 250);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 190);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33396,7 +33408,8 @@
 	  _createClass(NewPost, [{
 	    key: 'onSubmit',
 	    value: function onSubmit(props) {
-	      //Submit new post action
+	      //Call action creator
+	      this.props.newPost(props);
 	    }
 	  }, {
 	    key: 'render',
@@ -33441,7 +33454,7 @@
 	  form: 'NewPostForm',
 	  fields: ['post'],
 	  validate: validate
-	}, null, { addPost: _index.addPost })(NewPost);
+	}, null, { newPost: _index.newPost })(NewPost);
 
 /***/ }
 /******/ ]);

@@ -1,13 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import {addPost} from '../actions/index';
+import {newPost} from '../actions/index';
+import {Link} from 'react-router';
 
 
 class NewPost extends Component {
 
+
   onSubmit(props) {
-    //Submit new post action
+    //Call action creator
+    this.props.newPost(props);
+
   }
 
   render() {
@@ -43,4 +47,4 @@ export default reduxForm({
   form: 'NewPostForm',
   fields: ['post'],
   validate
-},null,{addPost})(NewPost);
+},null,{newPost})(NewPost);

@@ -29619,12 +29619,20 @@
 	          { className: 'nav-item', key: 1 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
+	            { className: 'nav-link', to: '/home' },
+	            'Home'
+	          )
+	        ), _react2.default.createElement(
+	          'li',
+	          { className: 'nav-item', key: 2 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
 	            { className: 'nav-link', to: '/new' },
 	            'Add to Parq'
 	          )
 	        ), _react2.default.createElement(
 	          'li',
-	          { className: 'nav-item', key: 2 },
+	          { className: 'nav-item', key: 3 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { className: 'nav-link', to: '/signout' },
@@ -29634,7 +29642,7 @@
 	      } else {
 	        return [_react2.default.createElement(
 	          'li',
-	          { className: 'nav-item', key: 3 },
+	          { className: 'nav-item', key: 4 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { className: 'nav-link', to: '/signin' },
@@ -29642,7 +29650,7 @@
 	          )
 	        ), _react2.default.createElement(
 	          'li',
-	          { className: 'nav-item', key: 4 },
+	          { className: 'nav-item', key: 5 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { className: 'nav-link', to: '/signup' },
@@ -33118,6 +33126,8 @@
 	
 	var actions = _interopRequireWildcard(_actions);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 190);
+	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33141,6 +33151,7 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      this.props.signoutUser();
+	      _reactRouter.browserHistory.push('/signin');
 	    }
 	  }, {
 	    key: 'render',

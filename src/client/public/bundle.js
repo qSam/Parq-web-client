@@ -29656,7 +29656,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'nav',
-	        { className: 'navbar navbar-light' },
+	        { className: 'navbar navbar-light parq-theme' },
 	        _react2.default.createElement(
 	          'ul',
 	          { className: 'nav navbar-nav' },

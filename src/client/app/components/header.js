@@ -15,7 +15,7 @@ class Header extends Component {
           <Link className="nav-link" to="/new">Add to Parq</Link>
       </li>,
         <li className="nav-item" key={2} >
-          <Link className="nav-link" to="/signout">Sign Out</Link>
+          <Link className="nav-link" to="/signin">Sign Out</Link>
       </li>
     ];
 
@@ -34,7 +34,7 @@ class Header extends Component {
 
    render(){
      return (
-        <nav className="navbar navbar-light">
+        <nav className="navbar navbar-light parq-theme">
           <ul className="nav navbar-nav">
             {this.renderLinks()}
           </ul>

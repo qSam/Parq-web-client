@@ -1,6 +1,10 @@
 .rounded {
-  border: 1px solid #FF8C00;
+  border: 1px solid #FFA64D;
   width: 50px;
   border-radius: 50%;
   text-align: center;
+}
+
+.parq-theme {
+  background-color: #FFA64D;
 }

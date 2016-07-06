@@ -14,7 +14,7 @@ export function fetchPosts() {
   const token = localStorage.getItem('token');
 
   return function (dispatch) {
-    axios.get(`${ROOT_URL}/getAllUserPosts/parq-user1@gmail.com`,{
+    axios.get(`${ROOT_URL}/getAllUserPosts/parq-user3@gmail.com`,{
       headers: {
         'authorization': token
       }
@@ -82,7 +82,7 @@ export function newPost({post}){
   const token = localStorage.getItem('token');
 
   return function(dispatch) {
-     axios.put(`${ROOT_URL}/addNewUserPost/parq-user1@gmail.com`,{post},{
+     axios.put(`${ROOT_URL}/addNewUserPost/parq-user3@gmail.com`,{post},{
        headers: {
          'authorization': token
        }

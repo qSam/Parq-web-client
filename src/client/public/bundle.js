@@ -28162,7 +28162,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user1@gmail.com', {
+	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user3@gmail.com', {
 	      headers: {
 	        'authorization': token
 	      }
@@ -28230,7 +28230,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user1@gmail.com', { post: post }, {
+	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user3@gmail.com', { post: post }, {
 	      headers: {
 	        'authorization': token
 	      }

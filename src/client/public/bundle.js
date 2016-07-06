@@ -28162,7 +28162,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user3@gmail.com', {
+	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user1@gmail.com', {
 	      headers: {
 	        'authorization': token
 	      }
@@ -28174,8 +28174,7 @@
 	      });
 	    }).catch(function () {
 	      //Show error
-	      console.log('I am here');
-	      dispatch(authError('Bad Login Info'));
+	      dispatch();
 	    });
 	  };
 	}
@@ -28188,12 +28187,15 @@
 	    //Submit login info to Parq-API
 	    _axios2.default.post(ROOT_URL + '/signin', { email: email, password: password }).then(function (response) {
 	      // If request is good, update state
-	      dispatch({ type: AUTH_USER });
+	      dispatch({
+	        type: AUTH_USER,
+	        payload: AUTH_USER
+	      });
 	      // Save JWT Token
 	      console.log(response.data.token);
 	      localStorage.setItem('token', response.data.token);
 	      //Redirect to home
-	      _reactRouter.browserHistory.push('/home');
+	      //browserHistory.push('/home');
 	    });
 	  };
 	}
@@ -28228,7 +28230,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user3@gmail.com', { post: post }, {
+	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user1@gmail.com', { post: post }, {
 	      headers: {
 	        'authorization': token
 	      }
@@ -32933,6 +32935,9 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var action = arguments[1];
 	
+	
+	  console.log(action);
+	
 	  switch (action.type) {
 	    case _index.AUTH_USER:
 	      return _extends({}, state, { authenticated: true });
@@ -33001,6 +33006,8 @@
 	
 	var actions = _interopRequireWildcard(_actions);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 190);
+	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33029,6 +33036,7 @@
 	      console.log(email, password);
 	      //Sign In
 	      this.props.signinUser({ email: email, password: password });
+	      _reactRouter.browserHistory.push('/home');
 	    }
 	  }, {
 	    key: 'renderAlert',

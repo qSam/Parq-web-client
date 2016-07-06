@@ -5,6 +5,9 @@ import {
 } from '../actions/index';
 
 export default function(state={} , action) {
+
+  console.log(action);
+
   switch(action.type){
     case AUTH_USER:
       return {...state, authenticated: true};

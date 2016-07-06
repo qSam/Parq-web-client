@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
 import * as actions from '../../actions';
+import {browserHistory} from 'react-router';
 
 class Signin extends Component {
   handleFormSubmit({email,password}){
     console.log(email,password);
     //Sign In
     this.props.signinUser({email,password});
+    browserHistory.push('/home');
   }
 
   renderAlert() {

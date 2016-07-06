@@ -14,7 +14,7 @@ export function fetchPosts() {
   const token = localStorage.getItem('token');
 
   return function (dispatch) {
-    axios.get(`${ROOT_URL}/getAllUserPosts/parq-user3@gmail.com`,{
+    axios.get(`${ROOT_URL}/getAllUserPosts/parq-user1@gmail.com`,{
       headers: {
         'authorization': token
       }
@@ -28,8 +28,7 @@ export function fetchPosts() {
       })
       .catch( () => {
         //Show error
-        console.log('I am here');
-        dispatch(authError('Bad Login Info'))
+        dispatch()
       });
   }
 
@@ -41,12 +40,15 @@ export function signinUser({email,password}) {
     axios.post(`${ROOT_URL}/signin`,{email,password})
       .then( response => {
         // If request is good, update state
-        dispatch({type:AUTH_USER})
+        dispatch({
+          type:AUTH_USER,
+          payload: AUTH_USER
+        });
         // Save JWT Token
         console.log(response.data.token);
         localStorage.setItem('token',response.data.token);
         //Redirect to home
-        browserHistory.push('/home');
+        //browserHistory.push('/home');
 
       });
 
@@ -80,7 +82,7 @@ export function newPost({post}){
   const token = localStorage.getItem('token');
 
   return function(dispatch) {
-     axios.put(`${ROOT_URL}/addNewUserPost/parq-user3@gmail.com`,{post},{
+     axios.put(`${ROOT_URL}/addNewUserPost/parq-user1@gmail.com`,{post},{
        headers: {
          'authorization': token
        }

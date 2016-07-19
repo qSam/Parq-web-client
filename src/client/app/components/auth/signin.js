@@ -8,7 +8,7 @@ class Signin extends Component {
     console.log(email,password);
     //Sign In
     this.props.signinUser({email,password});
-    browserHistory.push('/home');
+
   }
 
   renderAlert() {

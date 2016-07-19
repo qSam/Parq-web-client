@@ -28162,7 +28162,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user3@gmail.com', {
+	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user4@gmail.com', {
 	      headers: {
 	        'authorization': token
 	      }
@@ -28184,24 +28184,21 @@
 	  var password = _ref.password;
 	
 	  return function (dispatch) {
-	    //Submit login info to Parq-API
 	    _axios2.default.post(ROOT_URL + '/signin', { email: email, password: password }).then(function (response) {
-	      // If request is good, update state
-	      dispatch({
-	        type: AUTH_USER,
-	        payload: AUTH_USER
-	      });
-	      // Save JWT Token
-	      console.log(response.data.token);
+	      //Dispatch Auth action to reducer
+	      dispatch({ type: AUTH_USER });
+	      //Save JWT Token
 	      localStorage.setItem('token', response.data.token);
 	      //Redirect to home
-	      //browserHistory.push('/home');
+	      _reactRouter.browserHistory.push('/home');
+	    }).catch(function (response) {
+	      return dispatch();
 	    });
 	  };
 	}
 	
 	function signoutUser() {
-	  localStorage.removeItem('token');
+	  //localStorage.removeItem('token');
 	  return { type: UNAUTH_USER };
 	}
 	
@@ -28230,7 +28227,7 @@
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user3@gmail.com', { post: post }, {
+	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user4@gmail.com', { post: post }, {
 	      headers: {
 	        'authorization': token
 	      }
@@ -33036,7 +33033,6 @@
 	      console.log(email, password);
 	      //Sign In
 	      this.props.signinUser({ email: email, password: password });
-	      _reactRouter.browserHistory.push('/home');
 	    }
 	  }, {
 	    key: 'renderAlert',

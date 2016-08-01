@@ -10,7 +10,8 @@ class NewPost extends Component {
 
   onSubmit(props) {
     //Call action creator
-    this.props.newPost(props);
+    console.log('New Post email prop ', this.props.myEmail)
+    this.props.newPost(props, this.props.myEmail);
 
   }
 
@@ -40,11 +41,15 @@ function validate(values) {
   return errors;
 }
 
-
+function mapStateToProps(state) {
+  return {
+    myEmail: state.auth.email
+  };
+}
 
 
 export default reduxForm({
   form: 'NewPostForm',
   fields: ['post'],
   validate
-},null,{newPost})(NewPost);
+},mapStateToProps,{newPost})(NewPost);

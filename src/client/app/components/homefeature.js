@@ -8,7 +8,8 @@ class HomeFeature extends Component {
   //First time render
   componentWillMount() {
     //Get All posts for user
-    this.props.fetchPosts();
+    console.log('My Email in Home Feature is : ', this.props.myEmail)
+    this.props.fetchPosts(this.props.myEmail)
   }
 
   renderPosts(){
@@ -37,7 +38,9 @@ class HomeFeature extends Component {
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts.all };
+  return {
+    posts: state.posts.all,
+    myEmail: state.auth.email };
 }
 
 export default connect(mapStateToProps,{fetchPosts})(HomeFeature);

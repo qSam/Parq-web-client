@@ -9,18 +9,19 @@ export const NEW_POST = 'new_post';
 
 const ROOT_URL  = 'http://localhost:3090';
 
-export function fetchPosts() {
+export function fetchPosts(myId) {
 
   const token = localStorage.getItem('token');
 
   return function (dispatch) {
-    axios.get(`${ROOT_URL}/getAllUserPosts/parq-user4@gmail.com`,{
+    const ID = myId
+    axios.get(`${ROOT_URL}/getAllUserPosts/${ID}`,{
       headers: {
         'authorization': token
       }
     })
       .then (response => {
-
+        console.log('Fetching post...')
         dispatch({
           type:FETCH_POSTS,
           payload: response.data
@@ -28,6 +29,7 @@ export function fetchPosts() {
       })
       .catch( () => {
         //Show error
+        console.log('Error')
         dispatch()
       });
   }
@@ -39,7 +41,13 @@ export function signinUser({email,password}) {
     axios.post(`${ROOT_URL}/signin`,{email,password})
       .then( response => {
         //Dispatch Auth action to reducer
-        dispatch({type: AUTH_USER})
+        var myEmail = {email}
+        console.log(myEmail)
+        console.log('Email is', myEmail['email'])
+        dispatch({
+          type: AUTH_USER,
+          payload: myEmail['email']
+        })
         //Save JWT Token
         localStorage.setItem('token', response.data.token);
         //Redirect to home
@@ -73,12 +81,13 @@ export function signupUser({email,password}){
   };
 }
 
-export function newPost({post}){
+export function newPost({post}, myId){
 
   const token = localStorage.getItem('token');
 
   return function(dispatch) {
-     axios.put(`${ROOT_URL}/addNewUserPost/parq-user4@gmail.com`,{post},{
+     const ID = myId
+     axios.put(`${ROOT_URL}/addNewUserPost/${ID}`,{post},{
        headers: {
          'authorization': token
        }

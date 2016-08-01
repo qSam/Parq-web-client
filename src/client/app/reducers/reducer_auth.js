@@ -4,15 +4,15 @@ import {
   AUTH_ERROR
 } from '../actions/index';
 
-export default function(state={} , action) {
+const INITIAL_STATE = { email: ''};
 
-  console.log(action);
+export default function(state=INITIAL_STATE , action) {
 
   switch(action.type){
     case AUTH_USER:
-      return {...state, authenticated: true};
+      return {...state, authenticated: true, email:action.payload};
     case UNAUTH_USER:
-      return {...state, authenticated: false};
+      return {...state, authenticated: false, email:''};
     case AUTH_ERROR:
       return {...state, error:action.payload};
   }

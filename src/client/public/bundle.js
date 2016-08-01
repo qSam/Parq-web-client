@@ -28157,23 +28157,25 @@
 	
 	var ROOT_URL = 'http://localhost:3090';
 	
-	function fetchPosts() {
+	function fetchPosts(myId) {
 	
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/parq-user4@gmail.com', {
+	    var ID = myId;
+	    _axios2.default.get(ROOT_URL + '/getAllUserPosts/' + ID, {
 	      headers: {
 	        'authorization': token
 	      }
 	    }).then(function (response) {
-	
+	      console.log('Fetching post...');
 	      dispatch({
 	        type: FETCH_POSTS,
 	        payload: response.data
 	      });
 	    }).catch(function () {
 	      //Show error
+	      console.log('Error');
 	      dispatch();
 	    });
 	  };
@@ -28186,7 +28188,13 @@
 	  return function (dispatch) {
 	    _axios2.default.post(ROOT_URL + '/signin', { email: email, password: password }).then(function (response) {
 	      //Dispatch Auth action to reducer
-	      dispatch({ type: AUTH_USER });
+	      var myEmail = { email: email };
+	      console.log(myEmail);
+	      console.log('Email is', myEmail['email']);
+	      dispatch({
+	        type: AUTH_USER,
+	        payload: myEmail['email']
+	      });
 	      //Save JWT Token
 	      localStorage.setItem('token', response.data.token);
 	      //Redirect to home
@@ -28220,14 +28228,15 @@
 	  };
 	}
 	
-	function newPost(_ref3) {
+	function newPost(_ref3, myId) {
 	  var post = _ref3.post;
 	
 	
 	  var token = localStorage.getItem('token');
 	
 	  return function (dispatch) {
-	    _axios2.default.put(ROOT_URL + '/addNewUserPost/parq-user4@gmail.com', { post: post }, {
+	    var ID = myId;
+	    _axios2.default.put(ROOT_URL + '/addNewUserPost/' + ID, { post: post }, {
 	      headers: {
 	        'authorization': token
 	      }
@@ -32902,7 +32911,6 @@
 	
 	  switch (action.type) {
 	    case _index.FETCH_POSTS:
-	      console.log(action.payload);
 	      return _extends({}, state, { all: action.payload });
 	    default:
 	      return state;
@@ -32929,17 +32937,15 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
 	  var action = arguments[1];
 	
 	
-	  console.log(action);
-	
 	  switch (action.type) {
 	    case _index.AUTH_USER:
-	      return _extends({}, state, { authenticated: true });
+	      return _extends({}, state, { authenticated: true, email: action.payload });
 	    case _index.UNAUTH_USER:
-	      return _extends({}, state, { authenticated: false });
+	      return _extends({}, state, { authenticated: false, email: '' });
 	    case _index.AUTH_ERROR:
 	      return _extends({}, state, { error: action.payload });
 	  }
@@ -32948,6 +32954,8 @@
 	};
 	
 	var _index = __webpack_require__(/*! ../actions/index */ 250);
+	
+	var INITIAL_STATE = { email: '' };
 
 /***/ },
 /* 319 */
@@ -33223,7 +33231,7 @@
 	    key: 'handleFormSubmit',
 	    value: function handleFormSubmit(formProps) {
 	      //Call Signup Action Creator
-	      console.log('Here');
+	      //console.log('Here');
 	      this.props.signupUser(formProps);
 	    }
 	  }, {
@@ -33345,7 +33353,8 @@
 	    //First time render
 	    value: function componentWillMount() {
 	      //Get All posts for user
-	      this.props.fetchPosts();
+	      console.log('My Email in Home Feature is : ', this.props.myEmail);
+	      this.props.fetchPosts(this.props.myEmail);
 	    }
 	  }, {
 	    key: 'renderPosts',
@@ -33382,7 +33391,9 @@
 	}(_react.Component);
 	
 	function mapStateToProps(state) {
-	  return { posts: state.posts.all };
+	  return {
+	    posts: state.posts.all,
+	    myEmail: state.auth.email };
 	}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPosts: _index.fetchPosts })(HomeFeature);
@@ -33437,7 +33448,8 @@
 	    key: 'onSubmit',
 	    value: function onSubmit(props) {
 	      //Call action creator
-	      this.props.newPost(props);
+	      console.log('New Post email prop ', this.props.myEmail);
+	      this.props.newPost(props, this.props.myEmail);
 	    }
 	  }, {
 	    key: 'render',
@@ -33478,11 +33490,17 @@
 	  return errors;
 	}
 	
+	function mapStateToProps(state) {
+	  return {
+	    myEmail: state.auth.email
+	  };
+	}
+	
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'NewPostForm',
 	  fields: ['post'],
 	  validate: validate
-	}, null, { newPost: _index.newPost })(NewPost);
+	}, mapStateToProps, { newPost: _index.newPost })(NewPost);
 
 /***/ }
 /******/ ]);

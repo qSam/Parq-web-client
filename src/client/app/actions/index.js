@@ -42,8 +42,6 @@ export function signinUser({email,password}) {
       .then( response => {
         //Dispatch Auth action to reducer
         var myEmail = {email}
-        console.log(myEmail)
-        console.log('Email is', myEmail['email'])
         dispatch({
           type: AUTH_USER,
           payload: myEmail['email']
@@ -60,7 +58,7 @@ export function signinUser({email,password}) {
 }
 
 export function signoutUser() {
-  //localStorage.removeItem('token');
+  localStorage.removeItem('token');
   return { type: UNAUTH_USER };
 }
 
@@ -69,7 +67,11 @@ export function signupUser({email,password}){
     axios.post(`${ROOT_URL}/signup`,{email,password})
       .then( response => {
         //Dispatch Auth action to reducer
-        dispatch({type: AUTH_USER})
+        var myEmail = {email}
+        dispatch({
+          type: AUTH_USER,
+          payload: myEmail['email']
+        })
         //Save JWT Token
         localStorage.setItem('token', response.data.token);
         //Redirect to home

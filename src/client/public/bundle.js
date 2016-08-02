@@ -28189,8 +28189,6 @@
 	    _axios2.default.post(ROOT_URL + '/signin', { email: email, password: password }).then(function (response) {
 	      //Dispatch Auth action to reducer
 	      var myEmail = { email: email };
-	      console.log(myEmail);
-	      console.log('Email is', myEmail['email']);
 	      dispatch({
 	        type: AUTH_USER,
 	        payload: myEmail['email']
@@ -28206,7 +28204,7 @@
 	}
 	
 	function signoutUser() {
-	  //localStorage.removeItem('token');
+	  localStorage.removeItem('token');
 	  return { type: UNAUTH_USER };
 	}
 	
@@ -28217,7 +28215,11 @@
 	  return function (dispatch) {
 	    _axios2.default.post(ROOT_URL + '/signup', { email: email, password: password }).then(function (response) {
 	      //Dispatch Auth action to reducer
-	      dispatch({ type: AUTH_USER });
+	      var myEmail = { email: email };
+	      dispatch({
+	        type: AUTH_USER,
+	        payload: myEmail['email']
+	      });
 	      //Save JWT Token
 	      localStorage.setItem('token', response.data.token);
 	      //Redirect to home
@@ -33163,7 +33165,6 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      this.props.signoutUser();
-	      _reactRouter.browserHistory.push('/signin');
 	    }
 	  }, {
 	    key: 'render',
@@ -33171,7 +33172,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Good Bye'
+	        'Thank You for visiting Parq'
 	      );
 	    }
 	  }]);

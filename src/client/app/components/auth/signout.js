@@ -7,11 +7,10 @@ class Signout extends Component {
 
     componentWillMount() {
       this.props.signoutUser();
-      browserHistory.push('/signin');
     }
 
     render() {
-      return <div>Good Bye</div>
+      return <div>Thank You for visiting Parq</div>
     }
 }
 

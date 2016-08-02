@@ -32981,7 +32981,7 @@
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "well" },
+	    { className: "well lobsterFont" },
 	    " Welcome to Parq Beta"
 	  );
 	};
@@ -33171,7 +33171,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'lobsterFont' },
 	        'Thank You for visiting Parq'
 	      );
 	    }
@@ -33365,7 +33365,26 @@
 	        return _react2.default.createElement(
 	          'li',
 	          { className: 'list-group-item', key: post._id },
-	          post.post
+	          post.post,
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn-group pull-right', role: 'group', 'aria-label': '...' },
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default' },
+	              _react2.default.createElement('i', { className: 'fa fa-facebook-square', 'aria-hidden': 'true' })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default' },
+	              _react2.default.createElement('i', { className: 'fa fa-twitter-square', 'aria-hidden': 'true' })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default' },
+	              _react2.default.createElement('i', { className: 'fa fa-instagram', 'aria-hidden': 'true' })
+	            )
+	          )
 	        );
 	      });
 	    }

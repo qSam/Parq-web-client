@@ -8,3 +8,12 @@
 .parq-theme {
   background-color: #FFA64D;
 }
+
+.lobsterFont {
+	font-family: Lobster;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15px;
+}

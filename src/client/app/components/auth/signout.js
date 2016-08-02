@@ -10,7 +10,7 @@ class Signout extends Component {
     }
 
     render() {
-      return <div>Thank You for visiting Parq</div>
+      return <div className="lobsterFont">Thank You for visiting Parq</div>
     }
 }
 

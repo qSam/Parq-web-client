@@ -13,11 +13,22 @@ class HomeFeature extends Component {
   }
 
   renderPosts(){
-  
+
     return this.props.posts.map( (post)=> {
       return (
           <li className="list-group-item" key={post._id} >
              {post.post}
+             <div className="btn-group pull-right" role="group" aria-label="...">
+             <button type="button" className="btn btn-default">
+                <i className="fa fa-facebook-square" aria-hidden="true"></i>
+              </button>
+             <button type="button" className="btn btn-default">
+                <i className="fa fa-twitter-square" aria-hidden="true"></i>
+              </button>
+             <button type="button" className="btn btn-default">
+                <i className="fa fa-instagram" aria-hidden="true"></i>
+              </button>
+             </div>
           </li>
       )
     });

@@ -33360,10 +33360,11 @@
 	  }, {
 	    key: 'renderPosts',
 	    value: function renderPosts() {
+	
 	      return this.props.posts.map(function (post) {
 	        return _react2.default.createElement(
 	          'li',
-	          { className: 'list-group-item' },
+	          { className: 'list-group-item', key: post._id },
 	          post.post
 	        );
 	      });

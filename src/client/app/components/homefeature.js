@@ -13,9 +13,10 @@ class HomeFeature extends Component {
   }
 
   renderPosts(){
+  
     return this.props.posts.map( (post)=> {
       return (
-          <li className="list-group-item" >
+          <li className="list-group-item" key={post._id} >
              {post.post}
           </li>
       )

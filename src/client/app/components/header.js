@@ -37,7 +37,7 @@ class Header extends Component {
 
    render(){
      return (
-        <nav className="navbar navbar-light parq-theme">
+        <nav className="navbar navbar-light parq-theme lobsterFontMedium">
           <ul className="nav navbar-nav">
             {this.renderLinks()}
           </ul>

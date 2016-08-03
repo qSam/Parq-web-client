@@ -29674,7 +29674,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'nav',
-	        { className: 'navbar navbar-light parq-theme' },
+	        { className: 'navbar navbar-light parq-theme lobsterFontMedium' },
 	        _react2.default.createElement(
 	          'ul',
 	          { className: 'nav navbar-nav' },

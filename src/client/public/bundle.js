@@ -33396,8 +33396,14 @@
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'rounded' },
-	          this.props.posts.length
+	          { className: 'center-element' },
+	          'Total Purchases Shared : ',
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'rounded' },
+	            this.props.posts.length,
+	            ' '
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'ul',

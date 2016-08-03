@@ -1,7 +1,12 @@
 .rounded {
-  border: 1px solid #FFA64D;
-  width: 50px;
+  border: 2px solid #FFA64D;
+  width: 100px;
   border-radius: 50%;
+  text-align: center;
+}
+
+.center-element {
+  margin:auto;
   text-align: center;
 }
 

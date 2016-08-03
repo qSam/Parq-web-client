@@ -37,8 +37,8 @@ class HomeFeature extends Component {
   render() {
     return (
       <div>
-        <div className="rounded">
-          {this.props.posts.length}
+        <div className="center-element">
+           Total Purchases Shared : <span className="rounded">{this.props.posts.length} </span>
         </div>
         <ul className="list-group">
           {this.renderPosts()}

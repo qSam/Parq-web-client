@@ -41,7 +41,7 @@ export function signinUser({email,password}) {
     axios.post(`${ROOT_URL}/signin`,{email,password})
       .then( response => {
         //Dispatch Auth action to reducer
-        var myEmail = {email}
+        var myEmail = {email};
         dispatch({
           type: AUTH_USER,
           payload: myEmail['email']

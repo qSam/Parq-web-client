@@ -20,6 +20,7 @@ class NewPost extends Component {
     const {fields:{post}, handleSubmit} = this.props;
 
     return (
+
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 
         <div  className="form-group">
@@ -31,6 +32,7 @@ class NewPost extends Component {
         Submit</button>
 
       </form>
+      
     );
   }
 }

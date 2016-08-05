@@ -1,8 +1,8 @@
 .rounded {
   border: 2px solid #FFA64D;
-  width: 100px;
   border-radius: 50%;
   text-align: center;
+  padding: 5%;
 }
 
 .center-element {

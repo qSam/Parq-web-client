@@ -10,6 +10,18 @@ class Signup extends Component {
     this.props.signupUser(formProps);
   }
 
+  renderAlert() {
+    if(this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
+
+
+
   render() {
     const {handleSubmit, fields:{email,password,passwordConfirm}} = this.props;
 
@@ -32,7 +44,7 @@ class Signup extends Component {
           <input className="form-control" {...passwordConfirm} type="password" />
 
         </fieldset>
-
+        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign Up!</button>
 
       </form>

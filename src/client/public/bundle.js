@@ -33414,7 +33414,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'center-element' },
+	          { className: 'center-element-round' },
 	          'Total Purchases Shared : ',
 	          _react2.default.createElement(
 	            'span',

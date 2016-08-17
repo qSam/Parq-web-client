@@ -2,11 +2,13 @@
   border: 2px solid #FFA64D;
   border-radius: 50%;
   text-align: center;
+  padding: 1%;
 }
 
-.center-element {
+.center-element-round {
   margin:auto;
   text-align: center;
+  height: 40px;
 }
 
 .parq-theme {

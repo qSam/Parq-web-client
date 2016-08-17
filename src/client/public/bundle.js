@@ -33236,6 +33236,23 @@
 	      this.props.signupUser(formProps);
 	    }
 	  }, {
+	    key: 'renderAlert',
+	    value: function renderAlert() {
+	      if (this.props.errorMessage) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'alert alert-danger' },
+	          _react2.default.createElement(
+	            'strong',
+	            null,
+	            'Oops!'
+	          ),
+	          ' ',
+	          this.props.errorMessage
+	        );
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
@@ -33279,6 +33296,7 @@
 	          ),
 	          _react2.default.createElement('input', _extends({ className: 'form-control' }, passwordConfirm, { type: 'password' }))
 	        ),
+	        this.renderAlert(),
 	        _react2.default.createElement(
 	          'button',
 	          { action: 'submit', className: 'btn btn-primary' },

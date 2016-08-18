@@ -33245,7 +33245,7 @@
 	          _react2.default.createElement(
 	            'strong',
 	            null,
-	            'Oops!'
+	            'Oops! '
 	          ),
 	          ' ',
 	          this.props.errorMessage
@@ -33274,7 +33274,12 @@
 	            null,
 	            'Email:'
 	          ),
-	          _react2.default.createElement('input', _extends({ className: 'form-control' }, email))
+	          _react2.default.createElement('input', _extends({ className: 'form-control' }, email)),
+	          email.touched && email.error && _react2.default.createElement(
+	            'div',
+	            { className: 'error' },
+	            email.error
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'fieldset',
@@ -33284,7 +33289,12 @@
 	            null,
 	            'Password:'
 	          ),
-	          _react2.default.createElement('input', _extends({ className: 'form-control' }, password, { type: 'password' }))
+	          _react2.default.createElement('input', _extends({ className: 'form-control' }, password, { type: 'password' })),
+	          password.touched && password.error && _react2.default.createElement(
+	            'div',
+	            { className: 'error' },
+	            password.error
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'fieldset',
@@ -33294,7 +33304,12 @@
 	            null,
 	            'Confirm Password:'
 	          ),
-	          _react2.default.createElement('input', _extends({ className: 'form-control' }, passwordConfirm, { type: 'password' }))
+	          _react2.default.createElement('input', _extends({ className: 'form-control' }, passwordConfirm, { type: 'password' })),
+	          passwordConfirm.touched && passwordConfirm.error && _react2.default.createElement(
+	            'div',
+	            { className: 'error' },
+	            passwordConfirm.error
+	          )
 	        ),
 	        this.renderAlert(),
 	        _react2.default.createElement(
@@ -33311,6 +33326,22 @@
 	
 	function validate(formProps) {
 	  var errors = {};
+	
+	  if (!formProps.email) {
+	    errors.email = 'Please enter email';
+	  }
+	
+	  if (!formProps.password) {
+	    errors.password = 'Please enter password';
+	  }
+	
+	  if (!formProps.passwordConfirm) {
+	    errors.passwordConfirm = 'Please enter confirm password';
+	  }
+	
+	  if (formProps.password !== formProps.passwordConfirm) {
+	    errors.password = 'Passwords must match';
+	  }
 	
 	  return errors;
 	}

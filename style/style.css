@@ -33,3 +33,7 @@
 	line-height: 13px;
   font-color: #000000;
 }
+
+.error {
+  color:red;
+}

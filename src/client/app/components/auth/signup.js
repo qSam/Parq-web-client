@@ -14,7 +14,7 @@ class Signup extends Component {
     if(this.props.errorMessage) {
       return (
         <div className="alert alert-danger">
-          <strong>Oops!</strong> {this.props.errorMessage}
+          <strong>Oops! </strong> {this.props.errorMessage}
         </div>
       );
     }
@@ -56,6 +56,22 @@ class Signup extends Component {
 
 function validate(formProps) {
   const errors = {};
+
+  if(!formProps.email){
+    errors.email = 'Please enter email';
+  }
+
+  if (!formProps.password) {
+    errors.password = 'Please enter password';
+  }
+
+  if (!formProps.passwordConfirm) {
+    errors.passwordConfirm = 'Please enter confirm password';
+  }
+
+  if (formProps.password !== formProps.passwordConfirm) {
+    errors.password = 'Password must match';
+  }
 
   return errors;
 }

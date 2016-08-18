@@ -33081,7 +33081,12 @@
 	            null,
 	            'Email:'
 	          ),
-	          _react2.default.createElement('input', _extends({}, email, { className: 'form-control' }))
+	          _react2.default.createElement('input', _extends({}, email, { className: 'form-control' })),
+	          email.touched && email.error && _react2.default.createElement(
+	            'div',
+	            { className: 'error' },
+	            email.error
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'fieldset',
@@ -33091,7 +33096,12 @@
 	            null,
 	            'Password:'
 	          ),
-	          _react2.default.createElement('input', _extends({}, password, { className: 'form-control' }))
+	          _react2.default.createElement('input', _extends({}, password, { className: 'form-control' })),
+	          password.touched && password.error && _react2.default.createElement(
+	            'div',
+	            { className: 'error' },
+	            password.error
+	          )
 	        ),
 	        this.renderAlert(),
 	        _react2.default.createElement(
@@ -33106,13 +33116,28 @@
 	  return Signin;
 	}(_react.Component);
 	
+	function validate(formProps) {
+	  var errors = {};
+	
+	  if (!formProps.email) {
+	    errors.email = 'Please enter email';
+	  }
+	
+	  if (!formProps.password) {
+	    errors.password = 'Please enter password';
+	  }
+	
+	  return errors;
+	}
+	
 	function mapStateToProps(state) {
 	  return { errorMessage: state.auth.error };
 	}
 	
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'signin',
-	  fields: ['email', 'password']
+	  fields: ['email', 'password'],
+	  validate: validate
 	}, mapStateToProps, actions)(Signin);
 
 /***/ },

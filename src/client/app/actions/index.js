@@ -52,7 +52,10 @@ export function signinUser({email,password}) {
         browserHistory.push('/home');
 
       })
-      .catch( response => dispatch() )
+      .catch( response => dispatch(
+        type: AUTH_ERROR,
+        payload : 'Unable to login'
+      ) )
 
   };
 }

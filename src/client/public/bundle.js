@@ -28198,7 +28198,10 @@
 	      //Redirect to home
 	      _reactRouter.browserHistory.push('/home');
 	    }).catch(function (response) {
-	      return dispatch();
+	      return dispatch({
+	        type: AUTH_ERROR,
+	        payload: 'Unable to login'
+	      });
 	    });
 	  };
 	}

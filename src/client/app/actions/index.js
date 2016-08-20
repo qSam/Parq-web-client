@@ -118,7 +118,7 @@ export function newPost({post}, myId){
      .catch( response => {
        dispatch({
        type: AUTH_ERROR,
-       payload : 'Unable to create user account'
+       payload : 'Unable to add new post'
      })
    })
   };

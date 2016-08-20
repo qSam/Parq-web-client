@@ -33587,7 +33587,7 @@
 	            'Share your purchase: '
 	          ),
 	          _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, post)),
-	          post.error && _react2.default.createElement(
+	          post.touched && post.error && _react2.default.createElement(
 	            'div',
 	            { className: 'error' },
 	            post.error

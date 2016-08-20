@@ -12,8 +12,18 @@ class NewPost extends Component {
     //Call action creator
     console.log('New Post email prop ', this.props.myEmail)
     this.props.newPost(props, this.props.myEmail);
-
   }
+
+
+    renderAlert() {
+      if (this.props.errorMessage) {
+        return (
+            <div className="alert alert-danger">
+              <strong>Oops! </strong>{this.props.errorMessage}
+            </div>
+        );
+      }
+    }
 
   render() {
 
@@ -29,7 +39,7 @@ class NewPost extends Component {
           {post.touched && post.error &&
             <div className="error">{post.error}</div>}
         </div>
-
+        {this.renderAlert()}
         <button type="submit" className="btn btn-primary">
         Submit</button>
 
@@ -51,7 +61,8 @@ function validate(formProps) {
 
 function mapStateToProps(state) {
   return {
-    myEmail: state.auth.email
+    myEmail: state.auth.email,
+    errorMessage: state.auth.error 
   };
 }
 

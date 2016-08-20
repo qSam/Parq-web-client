@@ -28199,11 +28199,11 @@
 	      _reactRouter.browserHistory.push('/home');
 	    }).catch(function (response) {
 	
-	      console.log('I am in error dispatch');
-	      console.log(response);
+	      //console.log('I am in error dispatch');
+	      //console.log(response);
 	      dispatch({
 	        type: AUTH_ERROR,
-	        payload: 'Unable to login'
+	        payload: 'Access not authorized. Pleas enter valid username and password'
 	      });
 	    });
 	  };

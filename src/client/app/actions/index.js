@@ -58,7 +58,7 @@ export function signinUser({email,password}) {
         //console.log(response);
         dispatch({
         type: AUTH_ERROR,
-        payload : 'Unable to login'
+        payload : 'Access not authorized. Pleas enter valid username and password'
       })
     })
 

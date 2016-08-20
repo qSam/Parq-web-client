@@ -28198,7 +28198,10 @@
 	      //Redirect to home
 	      _reactRouter.browserHistory.push('/home');
 	    }).catch(function (response) {
-	      return dispatch({
+	
+	      console.log('I am in error dispatch');
+	      console.log(response);
+	      dispatch({
 	        type: AUTH_ERROR,
 	        payload: 'Unable to login'
 	      });
@@ -33057,7 +33060,7 @@
 	          _react2.default.createElement(
 	            'strong',
 	            null,
-	            'Oops!'
+	            'Oops! '
 	          ),
 	          this.props.errorMessage
 	        );

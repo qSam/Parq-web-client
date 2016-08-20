@@ -33586,7 +33586,12 @@
 	            null,
 	            'Share your purchase: '
 	          ),
-	          _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, post))
+	          _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, post)),
+	          post.error && _react2.default.createElement(
+	            'div',
+	            { className: 'error' },
+	            post.error
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'button',
@@ -33600,8 +33605,12 @@
 	  return NewPost;
 	}(_react.Component);
 	
-	function validate(values) {
+	function validate(formProps) {
 	  var errors = {};
+	
+	  if (!formProps.post) {
+	    errors.post = 'Pleas enter a post';
+	  }
 	
 	  return errors;
 	}

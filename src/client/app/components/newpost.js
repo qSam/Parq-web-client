@@ -26,19 +26,25 @@ class NewPost extends Component {
         <div  className="form-group">
           <label>Share your purchase: </label>
           <input type="text" className="form-control" {...post} />
+          {post.touched && post.error &&
+            <div className="error">{post.error}</div>}
         </div>
 
         <button type="submit" className="btn btn-primary">
         Submit</button>
 
       </form>
-      
+
     );
   }
 }
 
-function validate(values) {
+function validate(formProps) {
   const errors = {}
+
+  if (!formProps.post){
+    errors.post = 'Pleas enter a post';
+  }
 
   return errors;
 }
@@ -53,5 +59,5 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'NewPostForm',
   fields: ['post'],
-  validate
+  validate:validate
 },mapStateToProps,{newPost})(NewPost);

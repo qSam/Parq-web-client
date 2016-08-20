@@ -89,9 +89,10 @@ export function signupUser({email,password}){
 
       })
       .catch( response => {
+        console.log(response);
         dispatch({
         type: AUTH_ERROR,
-        payload : 'Unable to create user account'
+        payload : 'Unable to create user account. ' + response.data.error
       })
     })
 

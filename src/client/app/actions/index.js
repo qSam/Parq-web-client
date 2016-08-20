@@ -27,11 +27,13 @@ export function fetchPosts(myId) {
           payload: response.data
         });
       })
-      .catch( () => {
-        //Show error
-        console.log('Error')
-        dispatch()
-      });
+      .catch( response => {
+
+        dispatch({
+        type: AUTH_ERROR,
+        payload : 'Unable to fetch posts'
+      })
+    })
   }
 
 }
@@ -86,7 +88,12 @@ export function signupUser({email,password}){
         browserHistory.push('/home');
 
       })
-      .catch( response => dispatch() )
+      .catch( response => {
+        dispatch({
+        type: AUTH_ERROR,
+        payload : 'Unable to create user account'
+      })
+    })
 
   };
 }
@@ -107,6 +114,11 @@ export function newPost({post}, myId){
        console.log('Add Post successful', {post});
        browserHistory.push('/home');
      })
-     .catch (response => dispatch())
+     .catch( response => {
+       dispatch({
+       type: AUTH_ERROR,
+       payload : 'Unable to create user account'
+     })
+   })
   };
 }

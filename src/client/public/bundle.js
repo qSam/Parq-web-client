@@ -28173,10 +28173,12 @@
 	        type: FETCH_POSTS,
 	        payload: response.data
 	      });
-	    }).catch(function () {
-	      //Show error
-	      console.log('Error');
-	      dispatch();
+	    }).catch(function (response) {
+	
+	      dispatch({
+	        type: AUTH_ERROR,
+	        payload: 'Unable to fetch posts'
+	      });
 	    });
 	  };
 	}
@@ -28231,7 +28233,10 @@
 	      //Redirect to home
 	      _reactRouter.browserHistory.push('/home');
 	    }).catch(function (response) {
-	      return dispatch();
+	      dispatch({
+	        type: AUTH_ERROR,
+	        payload: 'Unable to create user account'
+	      });
 	    });
 	  };
 	}
@@ -28253,7 +28258,10 @@
 	      console.log('Add Post successful', { post: post });
 	      _reactRouter.browserHistory.push('/home');
 	    }).catch(function (response) {
-	      return dispatch();
+	      dispatch({
+	        type: AUTH_ERROR,
+	        payload: 'Unable to create user account'
+	      });
 	    });
 	  };
 	}

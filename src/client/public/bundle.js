@@ -28261,7 +28261,7 @@
 	    }).catch(function (response) {
 	      dispatch({
 	        type: AUTH_ERROR,
-	        payload: 'Unable to create user account'
+	        payload: 'Unable to add new post'
 	      });
 	    });
 	  };
@@ -33568,6 +33568,22 @@
 	      this.props.newPost(props, this.props.myEmail);
 	    }
 	  }, {
+	    key: 'renderAlert',
+	    value: function renderAlert() {
+	      if (this.props.errorMessage) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'alert alert-danger' },
+	          _react2.default.createElement(
+	            'strong',
+	            null,
+	            'Oops! '
+	          ),
+	          this.props.errorMessage
+	        );
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
@@ -33593,6 +33609,7 @@
 	            post.error
 	          )
 	        ),
+	        this.renderAlert(),
 	        _react2.default.createElement(
 	          'button',
 	          { type: 'submit', className: 'btn btn-primary' },
@@ -33617,7 +33634,8 @@
 	
 	function mapStateToProps(state) {
 	  return {
-	    myEmail: state.auth.email
+	    myEmail: state.auth.email,
+	    errorMessage: state.auth.error
 	  };
 	}
 	
